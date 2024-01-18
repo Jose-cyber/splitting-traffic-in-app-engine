@@ -1,23 +1,24 @@
 # Splitting traffic in app-engine
 
-<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/googlecloud/googlecloud-original-wordmark.svg"/>
+<img align="center" height="300" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/googlecloud/googlecloud-original-wordmark.svg"/>
 
-In this project I will show you how to split traffic in app engine, where you can specify a porcentage distribution of traffic across two or more of the versions of your application.
+In this project, I will show you how to split traffic in app engine, where you can specify a percentage distribution of traffic across two or more of the versions of your application.
 
 ## Required:
   - Google Cloud Account.
   - gcloud CLI installed.
 
 
-## What is app-engine ?
+## What is app engine ?
+
 **App Engine is a fully managed, serverless platform for developing and hosting web applications at scale**. You can choose from several popular languages, libraries, and frameworks to develop your apps, and then **let App Engine take care of provisioning servers and scaling your app instances based on demand.**
 
-## Create a project and enable required clud apis.
+## Create a project and enable required cloud APIs.
 
-After being authenticated in gcloud command run these commands bellow to create a project and enable required apis, if you don't know how to being authenticated [click here](https://cloud.google.com/docs/authentication/gcloud), or you can use [cloud shell](https://cloud.google.com/shell/docs/launching-cloud-shell) to run theese commands.
+After being authenticated in gcloud command run these commands below to create a project and enable required APIs, if you don't know how to be authenticated [click here](https://cloud.google.com/docs/authentication/gcloud), or you can use [cloud shell](https://cloud.google.com/shell/docs/launching-cloud-shell) to run these commands.
 
 
-Let's create a project, in this example I'm calling my project of **split-traffic**, you also can set the name of your project in a varible called ```PROJECT_ID``` runing a export command in your shell/bash:<br>
+Let's create a project, in this example I'm calling my project of **split-traffic**, you also can set the name of your project in a variable called running an export command in your shell/bash:<br>
 <pre>
 export PROJECT_ID=split-traffic
 </pre>
@@ -32,7 +33,7 @@ Set project in your shell:
 gcloud config set project $PROJECT_ID
 </pre>
 
-Enable app-engine api:
+Enable app-engine API:
 <pre>
 gcloud services enable appengine.googleapis.com --project $PROJECT_ID
 </pre>
@@ -45,7 +46,7 @@ After you run these commands, you'll can see in your project the initial page of
 
 ## Deploy web application
 
-In app engine we've a 2 kind of environments, they're standard and flexible, in this example we will deploy the app using the standard environment, if you want  to know more about the difference of theese environments [click here](https://cloud.google.com/appengine/docs/the-appengine-environments).
+In app engine we have a 2 kind of environments, they're standard and flexible, in this example we will deploy the app using the standard environment, if you want to know more about the difference of these environments [click here](https://cloud.google.com/appengine/docs/the-appengine-environments).
 
 Access the app directory:
 <pre>
@@ -65,12 +66,12 @@ After you deploy the app, the app engine will generate a Default URL following t
 https://**VERSION**-dot-**SERVICE**-dot-**PROJECT_ID**.**REGION_ID**.r.appspot.com
 
 
- - **VERSION**: is the name of your version, and the version name can contain numbers, letters, and hyphens, you also can omit "**VERSION**-dot-" if you don't need to target a specific version, in this project I'm not setting any version name on my configuration file([app/app.yaml](app/app.yaml)). 
- - **SERVICE**: is the app name, in this case ```python-app```.
- - **PROJECT_ID**: is the project id where's you activated the app engine resource and deployed the app, I've created a project with PROJECT_ID called ```split-traffic```.
- - **REGION_ID**:  The app engine is a region resource, in this case chose the ```us-central```.
+ - **VERSION**: is the name of your version, and the version name can contain numbers, letters, and hyphens, you also can omit "**VERSION**-dot-" if you don't need to target a specific version, in this project I'm not setting any version name on my configuration file ([app/app.yaml](app/app.yaml)). 
+ - **SERVICE**: is the app name, in this case.
+ - **PROJECT_ID**: is the project ID where's you activated the app engine resource and deployed the app, I've created a project with PROJECT_ID called.
+ - **REGION_ID**: The app engine is a region resource, in this case chose ```us-central```
 
-In this case I will access the app using this url:
+In this case, I will access the app using this URL:
 
 https://python-app-dot-split-traffic.uc.r.appspot.com
 
@@ -84,7 +85,7 @@ It's really important we know the app engine components, to understand about how
 
 The App Engine **application** is a top-level container that includes the **service**, **version**, and **instance** resources that make up your app.
 
-when we deploy the python app using the command "gcloud app deploy ....[]" a **service** called "python-app" was instantly created and **the service in the app engine can have one or more versions**, you can list the versions using the command:
+When we deploy the python app using the command "gcloud app deploy ....[]" a **service** called "python-app" was instantly created and **the service in the app engine can have one or more versions**, you can list the versions using the command:
 <pre>
 gcloud app versions list --service=python-app --project $PROJECT_ID
 </pre>
@@ -97,13 +98,13 @@ In the next steps below, I'll show you how to deploy a new version of our python
 
 ## Deploy the new version
 
-To create a new version of our app, let's start edditing our [main.py](app/main.py) file, and change the message string that was being returned in the ```index()``` function, from "App 1" to "App 2".
+To create a new version of our app, let's start editing our [main.py](app/main.py) file, and change the message string that was being returned to the function, from "App 1" to "App 2".
 
 <img src="img/code_change.png"/>
 
-After making the change and saving it, let's deploy the new version of service python-app, this version I'll call it of "potato-version" .
+After making the change and saving it, let's deploy the new version of service python-app, this version I'll call it of "potato-version".
 
-Acess de app directory:
+Access de app directory:
 <pre>
 cd app/
 </pre>
@@ -123,14 +124,14 @@ Now we can list the versions and see the potato-version deployed.
 <pre>
 gcloud app versions list --service=python-app --project $PROJECT_ID
 </pre>
-output:
+Output:
 <img src="img/list-versions.png">
 
 ## Splitting traffic between the services
 
 You can use traffic splitting to specify a percentage distribution of traffic across two or more of the versions within a service. Splitting traffic allows you to conduct A/B testing between your versions and provides control over the pace when rolling out features.
 
-Sintax:
+Syntax:
 <pre>
 gcloud app services set-traffic [MY_SERVICE] --splits [MY_VERSION1]=[VERSION1_WEIGHT],[MY_VERSION2]=[VERSION2_WEIGHT] --split-by [IP_OR_COOKIE_OR_RANDOM]
 </pre>
@@ -139,23 +140,34 @@ split traffic:
 <pre>
 gcloud app services set-traffic python-app --splits 20240117t144713=0.5,potato-version=0.5 --split-by random --project $PROJECT_ID
 </pre>
+Output:
+<img src="img/split-trafic.png"/>
 
-run the script.sh using the command:
+### Testing.
+I've created a script to test, and added in this repository, the script file is [script.sh](./script.sh).
+
+To run this script you need to give execute permission in your shell, to do this run the following command:
 <pre>
-./script.sh your-app-host.appspot.com
+sudo chmod +x script.sh
 </pre>
-and the output we can see the traffic beeing the thr between the diference versions
+
+Run the script.sh using the sintax:
+<pre>
+./script.sh your-host.appspot.com
+</pre>
+
+And the output we can see, the traffic being split  between the different versions.
 <img src="img/split-traffic-working.png"/>
 
 ## Migrate traffic
 
 Let's migrate all traffic to our newest version, and turn off the traffic for old version
 
-sintax:
+Syntax:
 <pre>
 gcloud app services set-traffic [MY_SERVICE] --splits [MY_VERSION]=1
 </pre>
-executing this command you will migrate all traffic immediately, but if you want migrate gradually, add the flag ```--migrate``` in command.
+Executing this command you will migrate all traffic immediately, but if you want to migrate gradually, add this flag ```--migrate``` in command.
 
 Command:
 <pre>
@@ -164,7 +176,7 @@ gcloud app services set-traffic python-app --splits potato-version=1 --project $
 output:
 <img src="img/migrate-traffic.png">
 
-now you can see, that all traffic is only in one version:
+Now you can see, that all traffic is only in one version:
 <img src="img/all-traffic-in-one-version.png">
 
 

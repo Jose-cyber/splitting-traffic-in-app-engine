@@ -1,0 +1,4 @@
+runtime: python312
+service: python-app
+env_variables:
+  PORT: 8080

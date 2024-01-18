@@ -1,6 +1,8 @@
 # Splitting traffic in app-engine
 
-<img align="center" height="300" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/googlecloud/googlecloud-original-wordmark.svg"/>
+<div align="center">
+  <img height="300" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/googlecloud/googlecloud-original-wordmark.svg"/>
+</div>
 
 In this project, I will show you how to split traffic in app engine, where you can specify a percentage distribution of traffic across two or more of the versions of your application.
 

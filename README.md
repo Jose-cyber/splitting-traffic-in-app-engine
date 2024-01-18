@@ -1,4 +1,4 @@
-# Splitting traffic in google cloud app engine.
+# Splitting traffic in google cloud app engine
 
 <div align="center">
   <img height="300" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/googlecloud/googlecloud-original-wordmark.svg"/>
@@ -184,7 +184,7 @@ Now you can see, that all traffic is only in one version:
 
 ## Conclusion
 
-
+App engine is a powerful and had awesome functionalities, the split traffic resource is so good to production environments, and you can test new versions of service and have a good rollback speed.
 
 
 

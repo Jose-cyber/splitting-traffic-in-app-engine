@@ -8,7 +8,7 @@ In this project, I will show you how to split traffic in app engine, where you c
 
 ## Required:
   - Google Cloud Account.
-  - gcloud CLI installed.
+  - Gcloud CLI installed.
 
 
 ## What is app engine ?
@@ -145,20 +145,20 @@ gcloud app services set-traffic python-app --splits 20240117t144713=0.5,potato-v
 Output:
 <img src="img/split-trafic.png"/>
 
-### Testing.
-I've created a script to test, and added in this repository, the script file is [script.sh](./script.sh).
+### Testing
+I've created a script to test, and added to this repository, the script file is [script.sh](./script.sh).
 
 To run this script you need to give execute permission in your shell, to do this run the following command:
 <pre>
 sudo chmod +x script.sh
 </pre>
 
-Run the script.sh using the sintax:
+Run the script.sh using the syntax:
 <pre>
 ./script.sh your-host.appspot.com
 </pre>
 
-And the output we can see, the traffic being split  between the different versions.
+And the output we can see, the traffic being split between the different versions.
 <img src="img/split-traffic-working.png"/>
 
 ## Migrate traffic
@@ -169,7 +169,7 @@ Syntax:
 <pre>
 gcloud app services set-traffic [MY_SERVICE] --splits [MY_VERSION]=1
 </pre>
-Executing this command you will migrate all traffic immediately, but if you want to migrate gradually, add this flag ```--migrate``` in command.
+Executing this command you will migrate all traffic immediately, but if you want to migrate gradually, add this flag in the command.
 
 Command:
 <pre>
@@ -182,8 +182,7 @@ Now you can see, that all traffic is only in one version:
 <img src="img/all-traffic-in-one-version.png">
 
 
-
-
+## Conclusion
 
 
 
